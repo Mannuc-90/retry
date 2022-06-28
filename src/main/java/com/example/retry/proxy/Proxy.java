@@ -13,13 +13,13 @@ public class Proxy {
 	@Autowired
 	private RestTemplate restTemplate;
 
-	@Retryable(value = RuntimeException.class, maxAttempts = 4, backoff = @Backoff(multiplier = 2))
+	//@Retryable(value = RuntimeException.class, maxAttempts = 4, backoff = @Backoff(multiplier = 2))
 	public String retry(String pathVar) {
 
 		System.out.println("entering retry :  path var : " + pathVar);
-		if (pathVar.equals("err")) {
+		/*if (pathVar.equals("err")) {
 			throw new RuntimeException();
-		}
+		}*/
 
 		return restTemplate.getForObject("http://httpbin.org/delay/3", String.class);
 	}
